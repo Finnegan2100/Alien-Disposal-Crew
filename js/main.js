@@ -482,8 +482,7 @@
 	var drip75Image = new Image();
 	drip75Image.src = "images/acid.png";
 
-
-
+	
 	//TRASH DISPOSAL UNIT
 	var trashCan = Object.create(spriteObject);
 	trashCan.x = 400;
@@ -666,6 +665,7 @@
 			level = 1;
 			gameOver = false;
 		}
+		
 		if (gameOver && rect3.y > 370 || rect3.x > canvas.width)  {
 
 			if (level === 10 || level === 7 || level === 8 || level === 9) {
@@ -1102,482 +1102,400 @@
 			}
 		}
 
-	//DRAWING TRASH CAN
 	context.fillStyle = "#CF311F";
 
-	if(piece1.disappear === false)  //IF ZOMBIE PIECES HAVE NOT BEEN PULVERIZED, DRAW THEM
-	{
-	//context2.fillStyle = "#4EA12F";
-	//context2.fillRect(piece1.x,piece1.y,piece1.width,piece1.height);
-	context2.drawImage(piece1Image,piece1.x,piece1.y,piece1.width,piece1.height);
-	}
+		if (!piece1.disappear) {
 
-	if(piece2.disappear === false)
-	{
-	//context2.fillStyle = "#ffffff";
-	//context2.fillRect(piece2.x,piece2.y,piece2.width,piece2.height);
-	context2.drawImage(piece2Image,piece2.x,piece2.y,piece2.width,piece2.height);
-	}
+			context2.drawImage(piece1Image,piece1.x,piece1.y,piece1.width,piece1.height);
+		}
+		if (!piece2.disappear) {
+	
+			context2.drawImage(piece2Image,piece2.x,piece2.y,piece2.width,piece2.height);
+		}
+		if (!piece3.disappear) {
 
-	if(piece3.disappear === false)
-	{
-	//context2.fillStyle = "#333333";
-	//context2.fillRect(piece3.x,piece3.y,piece3.width,piece3.height);
-	context2.drawImage(piece3Image,piece3.x,piece3.y,piece3.width,piece3.height);
-	}
+			context2.drawImage(piece3Image,piece3.x,piece3.y,piece3.width,piece3.height);
+		}
 
-	if(level === 1)
-	{
+	if (level === 1) {
 
-	if(Math.abs(rect1.x - crusher1.x) < 150 && rect1.y === 30 && zombies[2].explode === false)
-	{
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("STEP ON THE SWITCH TO DESTROY ALIEN WITH LASER.",110,15);
-	}
-	else if (zombies[2].explode === true && gotZombie === false)
-	{
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("COLLECT ALIEN REMAINS FOR DISPOSAL.",130,15);
-	}
-	else if(gotZombie === true && piece1.y !== 380)
-	{
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("PLACE ALIEN REMAINS IN TRASH REMOVAL SYSTEM.",130,15);
-	}
-	else if(piece1.y === 380 && levelWon === false)
-	{
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("HOLD THE DOWN KEY WHILE TOUCHING TRASH REMOVAL SYSTEM TO PULVERIZE TRASH.",10,15);
-	}
-
-	else if (levelWon === false)
-	{
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("PRESS LEFT AND RIGHT KEYS TO MOVE. AVOID ENEMIES.",90,15);
-	}
+		if (Math.abs(rect1.x - crusher1.x) < 150 && rect1.y === 30 && !zombies[2].explode) {
+			
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("STEP ON THE SWITCH TO DESTROY ALIEN WITH LASER.",110,15);
+		}
+		else if (zombies[2].explode && !gotZombie) {
+					
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("COLLECT ALIEN REMAINS FOR DISPOSAL.",130,15);
+		}
+		else if (gotZombie && piece1.y !== 380) {
+	
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("PLACE ALIEN REMAINS IN TRASH REMOVAL SYSTEM.",130,15);
+		}
+		else if (piece1.y === 380 && !levelWon) {
+	
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("HOLD THE DOWN KEY WHILE TOUCHING TRASH REMOVAL SYSTEM TO PULVERIZE TRASH.",10,15);
+		}
+		else if (!levelWon) {
+	
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("PRESS LEFT AND RIGHT KEYS TO MOVE. AVOID ENEMIES.",90,15);
+		}
 	}
 
 
-	if(level === 2 || level === 3 || level === 5 || level === 6 || level === 9 || level === 10) //IF LEVEL INCLUDES RAT
-	{
+	if (level === 2 || level === 3 || level === 5 || level === 6 || level === 9 || level === 10) {
 
+		context.drawImage(ratImage,rat.sourceX,rat.sourceY,rat.sourceWidth,rat.sourceHeight,rat.x,rat.y,rat.width,rat.height);
 
-	//DRAWING RAT
-	//context.fillStyle = "#664400";
-	//context.fillRect(rat.x,rat.y,rat.width,rat.height);
-
-	context.drawImage(ratImage,rat.sourceX,rat.sourceY,rat.sourceWidth,rat.sourceHeight,rat.x,rat.y,rat.width,rat.height);
-
-	//RAT MOVEMENT
-
-	if(rat.left === false)
-	{
-	rat.sourceX = 20;
-	rat.x += rat.vx;
-	}
-	if(rat.left === true)
-	{
-	rat.sourceX = 0;
-	rat.x += -rat.vx;
-	}
-	if(rat.x >= 500 && rat.left === false)  //DEFINING RAT BOUNDARIES
-	{
-	rat.left = true;
-	}
-	if(rat.x <= 20 && rat.left === true)
-	{
-	rat.left = false;
-	}
-	if(level === 2 && levelWon === false)   //WRITING NOTES ON BOTTOM OF SCREEN FOR LEVEL TWO
-	{
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("MICE CANNOT HARM YOU, BUT CAN ACTVATE LASER.",90,15);
-	}
-
-	//ALLOWING RAT TO TRIGGER LASER
-
-	var vx10 = (topSwitcherRandom1 + 20) - rat.centerX();      
-	var combinedHalfWidths10 = switcher1.halfWidth() + rat.halfWidth();
-	if(Math.abs(vx10) < combinedHalfWidths10 && rat.y === 120) 
-	{
-	crusher1On = true;
-	}
-	}
-
-	if(level === 3 || level === 5 || level === 9 || level === 10)  //IF LEVEL INCLUDES TWO RATS
-	{
-
-	//DRAWING RAT 2
-	//context.fillStyle = "#664400";
-	//context.fillRect(rat2.x,rat2.y,rat2.width,rat2.height);
-
-	context.drawImage(rat2Image,rat2.sourceX,rat2.sourceY,rat2.sourceWidth,rat2.sourceHeight,rat2.x,rat2.y,rat2.width,rat2.height);
-
-	//RAT 2 MOVEMENT
-
-	if(rat2.left === false)
-	{
-	rat2.sourceX = 20;
-	rat2.x += rat2.vx;
-	}
-	if(rat2.left === true)
-	{
-	rat2.sourceX = 0;
-	rat2.x += -rat2.vx;
-	}
-	if(rat2.x >= 500 && rat2.left === false)  //RAT 2 BOUNDARIES
-	{
-	rat2.left = true;
-	}
-	if(rat2.x <= 20 && rat2.left === true)
-	{
-	rat2.left = false;
-	}
-
-	//ALLOWING RAT 2 TO TRIGGER LASER
-
-	var vx11 = (topSwitcherRandom1 + 20) - rat2.centerX();
-	var combinedHalfWidths11 = switcher1.halfWidth() + rat2.halfWidth();
-	if(Math.abs(vx11) < combinedHalfWidths11 && rat2.y === 120) 
-	{
-	crusher1On = true;
-	}
-
-
-	if(level === 3 && levelWon === false)
-	{
-	context.fillStyle = "#fff";	// TEXT FOR LEVEL 3
-	context.font = "bold 12px ferdana";
-	context.fillText("TWO MICE THIS TIME AROUND.",190,15);
-	}
-	}
-
-
-	if(level === 4 || level === 5)   //IF LEVEL INCLUDES DRIPS
-	{
-	//DRAWING DRIPS
-	//context.fillStyle = "#61C83B";
-	//context.fillRect(drip1.x,drip1.y,drip1.width,drip1.height);
-	context.drawImage(drip1Image,drip1.x,drip1.y,drip1.width,drip1.height);
-
-	//context.fillStyle = "#61C83B";
-	//context.fillRect(drip2.x,drip2.y,drip2.width,drip2.height);
-	context.drawImage(drip2Image,drip2.x,drip2.y,drip2.width,drip2.height);
-
-	drip1.y += drip1.vy;  //DRIP VELOCITIES
-	drip2.y += drip2.vy;
-
-	if(drip1.y > 360)   //DRIP RESPAWNING
-	{
-	drip1.y = 170;
-	}
-	if(drip2.y > 150)
-	{
-	drip2.y = 0;
-	}
-
-	  //HUMAN AND DRIP 1 COLLISION
-	  
-	  var vx12 = rect1.centerX() - drip1.centerX();
-	  var vy12 = rect1.centerY() - drip1.centerY();
-	  var combinedHalfWidths12 = rect1.halfWidth() + drip1.halfWidth();
-	  var combinedHalfHeights12 = rect1.halfHeight() + drip1.halfHeight();
+		if (!rat.left) {
+			
+			rat.sourceX = 20;
+			rat.x += rat.vx;
+		}
+		if (rat.left) {
 		
-	  if(Math.abs(vx12) < combinedHalfWidths12) 
-	  {
-	  if(Math.abs(vy12) < combinedHalfHeights12)
-	   { 
-		  rect1.explode = true; 
-		  rect2.explode = true;
-		  rect3.explode = true;
-	   }
-	  }
-	  
-	  //HUMAN AND DRIP 2 COLLISION
-	   
-	  var vx13 = rect1.centerX() - drip2.centerX();
-	  var vy13 = rect1.centerY() - drip2.centerY();
-	  var combinedHalfWidths13 = rect1.halfWidth() + drip2.halfWidth();
-	  var combinedHalfHeights13 = rect1.halfHeight() + drip2.halfHeight();
+			rat.sourceX = 0;
+			rat.x += -rat.vx;
+		}
+		if (rat.x >= 500 && !rat.left) {
 		
-	  if(Math.abs(vx13) < combinedHalfWidths13) 
-	  {
-	  if(Math.abs(vy13) < combinedHalfHeights13)
-	   { 
-		  rect1.explode = true; 
-		  rect2.explode = true;
-		  rect3.explode = true;
-	   }
-	  }
-	}
-
-	if(level === 4)
-	{
-	if(level === 4 && levelWon === false) //TEXT FOR LEVEL 4
-	{
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("BEWARE OF DRIPPING ACID.",190,15);
-	}
-	}
-	  
-	if(level === 5)  
-	 {
-
-	if(level === 5 && levelWon === false) //TEXT FOR LEVEL 5
-	 {
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("TWO MICE AND DRIPPING ACID.",190,15);
-	}
-	}
-
-	if(level === 6)
-	{
-
-	if(level === 6 && levelWon === false) // TEXT FOR LEVEL 6
-	 {
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("ELECTRICAL MALFUNCTIONS REPORTED IN MAIN BUILDING.",80,15);
-	}
-	}
-
-	if(level === 7 || level === 10)   //IF LEVEL INCLUDES  5 DRIPS
-	{
-
-	//DRAWING DRIPS
-
-	//context.fillStyle = "#61C83B";
-	//context.fillRect(drip71.x,drip71.y,drip71.width,drip71.height);
-	context.drawImage(drip71Image,drip71.x,drip71.y,drip71.width,drip71.height);
-	//context.fillStyle = "#61C83B";
-	//context.fillRect(drip72.x,drip72.y,drip72.width,drip72.height);
-	context.drawImage(drip72Image,drip72.x,drip72.y,drip72.width,drip72.height);
-	//context.fillStyle = "#61C83B";
-	//context.fillRect(drip73.x,drip73.y,drip73.width,drip73.height);
-	context.drawImage(drip73Image,drip73.x,drip73.y,drip73.width,drip73.height);
-	//context.fillStyle = "#61C83B";
-	//context.fillRect(drip74.x,drip74.y,drip74.width,drip74.height);
-	context.drawImage(drip74Image,drip74.x,drip74.y,drip74.width,drip74.height);
-	//context.fillStyle = "#61C83B";
-	//context.fillRect(drip75.x,drip75.y,drip75.width,drip75.height);
-	context.drawImage(drip75Image,drip75.x,drip75.y,drip75.width,drip75.height);
-
-	//DRIP VELOCITIES
-
-	drip71.y += drip71.vy;
-	drip72.y += drip72.vy;
-	drip73.y += drip73.vy;
-	drip74.y += drip74.vy;
-	drip75.y += drip75.vy;
-
-	//RESPAWNING DRIPS
-
-	if(drip71.y > 360)
-	{
-	drip71.y = 170;
-	}
-	if(drip72.y > 150)
-	{
-	drip72.y = 0;
-	}
-	if(drip73.y > 360)
-	{
-	drip73.y = 170;
-	}
-	if(drip74.y > 150)
-	{
-	drip74.y = 0;
-	}
-	if(drip75.y > 150)
-	{
-	drip75.y = 0;
-	}
-
-	  //HUMAN AND DRIP 71 COLLISION
-	  
-	  var vx12 = rect1.centerX() - drip71.centerX();
-	  var vy12 = rect1.centerY() - drip71.centerY();
-	  var combinedHalfWidths12 = rect1.halfWidth() + drip71.halfWidth();
-	  var combinedHalfHeights12 = rect1.halfHeight() + drip71.halfHeight();
+			rat.left = true;
+		}
+		if (rat.x <= 20 && rat.left) {
 		
-	  if(Math.abs(vx12) < combinedHalfWidths12) 
-	  {
-	  if(Math.abs(vy12) < combinedHalfHeights12)
-	   { 
-		  rect1.explode = true; 
-		  rect2.explode = true;
-		  rect3.explode = true;
-	   }
-	  }
-	  
-	   //HUMAN AND DRIP 72 COLLISION
-	   
-	  var vx13 = rect1.centerX() - drip72.centerX();
-	  var vy13 = rect1.centerY() - drip72.centerY();
-	  var combinedHalfWidths13 = rect1.halfWidth() + drip72.halfWidth();
-	  var combinedHalfHeights13 = rect1.halfHeight() + drip72.halfHeight();
+			rat.left = false;
+		}
+		if (level === 2 && !levelWon) {
 		
-	  if(Math.abs(vx13) < combinedHalfWidths13) 
-	  {
-	  if(Math.abs(vy13) < combinedHalfHeights13)
-	   { 
-		  rect1.explode = true; 
-		  rect2.explode = true;
-		  rect3.explode = true;
-	   }
-	  }
-	  
-	   //HUMAN AND DRIP 73 COLLISION
-	  
-	  var vx12 = rect1.centerX() - drip73.centerX();
-	  var vy12 = rect1.centerY() - drip73.centerY();
-	  var combinedHalfWidths12 = rect1.halfWidth() + drip73.halfWidth();
-	  var combinedHalfHeights12 = rect1.halfHeight() + drip73.halfHeight();
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("MICE CANNOT HARM YOU, BUT CAN ACTVATE LASER.",90,15);
+		}
+
+		var vx10 = (topSwitcherRandom1 + 20) - rat.centerX();      
+		var combinedHalfWidths10 = switcher1.halfWidth() + rat.halfWidth();
+	
+		if (Math.abs(vx10) < combinedHalfWidths10 && rat.y === 120) {
+	
+			crusher1On = true;
+		}
+	}
+
+	if(level === 3 || level === 5 || level === 9 || level === 10) {
+
+		context.drawImage(rat2Image,rat2.sourceX,rat2.sourceY,rat2.sourceWidth,rat2.sourceHeight,rat2.x,rat2.y,rat2.width,rat2.height);
+
+		if (!rat2.left) {
+	
+			rat2.sourceX = 20;
+			rat2.x += rat2.vx;
+		}
+		if (rat2.left) {
+	
+			rat2.sourceX = 0;
+			rat2.x += -rat2.vx;
+		}
+		if (rat2.x >= 500 && !rat2.left) {
+	
+			rat2.left = true;
+		}
+		if (rat2.x <= 20 && rat2.left) {
+	
+			rat2.left = false;
+		}
+
+		var vx11 = (topSwitcherRandom1 + 20) - rat2.centerX();
+		var combinedHalfWidths11 = switcher1.halfWidth() + rat2.halfWidth();
+	
+		if (Math.abs(vx11) < combinedHalfWidths11 && rat2.y === 120) {
 		
-	  if(Math.abs(vx12) < combinedHalfWidths12) 
-	  {
-	  if(Math.abs(vy12) < combinedHalfHeights12)
-	   { 
-		  rect1.explode = true; 
-		  rect2.explode = true;
-		  rect3.explode = true;
-	   }
-	  }
-	  
-	   //HUMAN AND DRIP 74 COLLISION
-	  
-	  var vx13 = rect1.centerX() - drip74.centerX();
-	  var vy13 = rect1.centerY() - drip74.centerY();
-	  var combinedHalfWidths13 = rect1.halfWidth() + drip74.halfWidth();
-	  var combinedHalfHeights13 = rect1.halfHeight() + drip74.halfHeight();
+			crusher1On = true;
+		}	
+
+
+		if (level === 3 && !levelWon) {
+	
+			context.fillStyle = "#fff";	// TEXT FOR LEVEL 3
+			context.font = "bold 12px ferdana";
+			context.fillText("TWO MICE THIS TIME AROUND.",190,15);
+		}
+	}
+
+	if (level === 4 || level === 5) {
+
+		context.drawImage(drip1Image,drip1.x,drip1.y,drip1.width,drip1.height);
+		context.drawImage(drip2Image,drip2.x,drip2.y,drip2.width,drip2.height);
+
+		drip1.y += drip1.vy;  //DRIP VELOCITIES
+		drip2.y += drip2.vy;
+
+		if (drip1.y > 360) {
 		
-	  if(Math.abs(vx13) < combinedHalfWidths13) 
-	  {
-	  if(Math.abs(vy13) < combinedHalfHeights13)
-	   { 
-		  rect1.explode = true; 
-		  rect2.explode = true;
-		  rect3.explode = true;
-	   }
-	  }
-	  
-	   //HUMAN AND DRIP 75 COLLISION
-	  
-	  var vx13 = rect1.centerX() - drip75.centerX();
-	  var vy13 = rect1.centerY() - drip75.centerY();
-	  var combinedHalfWidths13 = rect1.halfWidth() + drip75.halfWidth();
-	  var combinedHalfHeights13 = rect1.halfHeight() + drip75.halfHeight();
+			drip1.y = 170;
+		}
+		if (drip2.y > 150) {
 		
-	  if(Math.abs(vx13) < combinedHalfWidths13) 
-	  {
-	  if(Math.abs(vy13) < combinedHalfHeights13)
-	   { 
-		  rect1.explode = true; 
-		  rect2.explode = true;
-		  rect3.explode = true;
-	   }
-	  }
+			drip2.y = 0;
+		}
 
-
-	if(level === 7 && levelWon === false) // TEXT FOR LEVEL 6
-	{
-	context.fillStyle = "#fff";
-	context.font = "bold 12px ferdana";
-	context.fillText("ACID LEAKS MORE SEVERE.",210,15);
-	}
-	}
-
-	if(level === 8 || level === 10) //IF LEVEL INCLUDES DROID
-	{
-	if(droidAlive === false) 
-	{
-	//context.fillStyle = "#A69E1B";   //DEACTIVATED DROID HEAD
-	//context.drawImage(rect7bImage,rect7b.sourceX,rect7b.sourceY,rect7b.sourceWidth,rect7b.sourceHeight,rect7b.x,rect7b.y,rect7b.width,rect7b.height);
-	context.drawImage(rect7Image,rect7.sourceX,rect7.sourceY,rect7.sourceWidth,rect7.sourceHeight,rect7.x,rect7.y,rect7.width,rect7.height);
-	}
-	else
-	{
-	//context.fillStyle = "#F2E727";   //ACTIVATED DROID HEAD 
-	context.drawImage(rect7Image,rect7.sourceX,rect7.sourceY,rect7.sourceWidth,rect7.sourceHeight,rect7.x,rect7.y,rect7.width,rect7.height);
-	}
-	//context.fillRect(rect7.x,rect7.y,rect7.width,rect7.height);  //DRAWING DROID 
-
-
-	if(droidAlive === false)
-	{
-	//context.drawImage(rect8bImage,rect8b.sourceX,rect8b.sourceY,rect8b.sourceWidth,rect8b.sourceHeight,rect8b.x,rect8b.y,rect8b.width,rect8b.height);
-	context.drawImage(rect8Image,rect8.sourceX,rect8.sourceY,rect8.sourceWidth,rect8.sourceHeight,rect8.x,rect8.y,rect8.width,rect8.height);
-	//context.fillStyle = "#9C8983";   //DEACTIVATED DROID BODY
-	}
-	else
-	{
-	//context.fillStyle = "#DBBEB8";   //ACTIVATED DROID BODY
-	context.drawImage(rect8Image,rect8.sourceX,rect8.sourceY,rect8.sourceWidth,rect8.sourceHeight,rect8.x,rect8.y,rect8.width,rect8.height);
-	}
-	//context.fillRect(rect8.x,rect8.y,rect8.width,rect8.height);
-
-
-	if(droidAlive === false)
-	{
-	//context.fillStyle = "#7F8F8A";   //DEACTIVATED DROID LEGS
-	context.drawImage(rect9Image,rect9.sourceX,rect9.sourceY,rect9.sourceWidth,rect9.sourceHeight,rect9.x,rect9.y,rect9.width,rect9.height);
-	//context.drawImage(rect9bImage,rect9b.sourceX,rect9b.sourceY,rect9b.sourceWidth,rect9b.sourceHeight,rect9b.x,rect9b.y,rect9b.width,rect9b.height);
-	}
-	else
-	{
-	//context.fillStyle = "#C3DBD4";   //ACTIVATED DROID LEGS
-	context.drawImage(rect9Image,rect9.sourceX,rect9.sourceY,rect9.sourceWidth,rect9.sourceHeight,rect9.x,rect9.y,rect9.width,rect9.height);
-	}
-	//context.fillRect(rect9.x,rect9.y,rect9.width,rect9.height);
-
-
-	if(droidAlive === true) //IF DROID IS ALIVE, IT MOVES
-	{
-	rect7.x += rect7.vx;   
-	rect8.x += rect8.vx;
-	rect9.x += rect9.vx;
-
-
-	  //HUMAN AND DROID COLLISION
-
-	  var vx12 = rect1.centerX() - rect7.centerX();
-	  var vy12 = rect1.centerY() - rect7.centerY();
-	  var combinedHalfWidths12 = rect1.halfWidth() + rect7.halfWidth();
-	  var combinedHalfHeights12 = rect1.halfHeight() + rect7.halfHeight();
+	  
+		var vx12 = rect1.centerX() - drip1.centerX();
+		var vy12 = rect1.centerY() - drip1.centerY();
+		var combinedHalfWidths12 = rect1.halfWidth() + drip1.halfWidth();
+		var combinedHalfHeights12 = rect1.halfHeight() + drip1.halfHeight();
 		
-	  if(Math.abs(vx12) < combinedHalfWidths12) 
-	  {
-	  if(Math.abs(vy12) < combinedHalfHeights12)
-	   { 
-		  rect1.explode = true; //IF HIT, HUMAN EXPLODES
-		  rect2.explode = true;
-		  rect3.explode = true;
-	   }
-	  }
-
+		if (Math.abs(vx12) < combinedHalfWidths12) {
+	  
+			if (Math.abs(vy12) < combinedHalfHeights12) { 
+			
+				rect1.explode = true; 
+				rect2.explode = true;
+				rect3.explode = true;
+			}
+		}
+	  
+		  //HUMAN AND DRIP 2 COLLISION
+		   
+		var vx13 = rect1.centerX() - drip2.centerX();
+		var vy13 = rect1.centerY() - drip2.centerY();
+		var combinedHalfWidths13 = rect1.halfWidth() + drip2.halfWidth();
+		var combinedHalfHeights13 = rect1.halfHeight() + drip2.halfHeight();
+			
+		if (Math.abs(vx13) < combinedHalfWidths13) {
+		  
+			if (Math.abs(vy13) < combinedHalfHeights13) { 
+				
+				rect1.explode = true; 
+				rect2.explode = true;
+				rect3.explode = true;
+		   }
+		}
 	}
-	else    //IF DROID IS NOT ACTIVATED, IT RETURNS
-	{
-	rect7.x += -rect7.vx;
-	rect8.x += -rect8.vx;
-	rect9.x += -rect9.vx;
+
+	if (level === 4) {
+	
+		if (level === 4 && !levelWon) {
+		
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("BEWARE OF DRIPPING ACID.",190,15);
+		}
+	}
+	  
+	if (level === 5) {
+
+		if (level === 5 && !levelWon) {
+	
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("TWO MICE AND DRIPPING ACID.",190,15);
+		}
 	}
 
-	if(rect7.x < 40)  //DROID BOUNDARIES
-	{
-	rect7.x = 40;
-	rect8.x = 40;
-	rect9.x = 40;
+	if (level === 6) {
+
+		if (level === 6 && !levelWon) {
+	
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("ELECTRICAL MALFUNCTIONS REPORTED IN MAIN BUILDING.",80,15);
+		}
 	}
 
+	if (level === 7 || level === 10) {
+
+		context.drawImage(drip71Image,drip71.x,drip71.y,drip71.width,drip71.height);
+		context.drawImage(drip72Image,drip72.x,drip72.y,drip72.width,drip72.height);
+		context.drawImage(drip73Image,drip73.x,drip73.y,drip73.width,drip73.height);
+		context.drawImage(drip74Image,drip74.x,drip74.y,drip74.width,drip74.height);
+		context.drawImage(drip75Image,drip75.x,drip75.y,drip75.width,drip75.height);
+
+		//DRIP VELOCITIES
+
+		drip71.y += drip71.vy;
+		drip72.y += drip72.vy;
+		drip73.y += drip73.vy;
+		drip74.y += drip74.vy;
+		drip75.y += drip75.vy;
+
+		//RESPAWNING DRIPS
+
+		if (drip71.y > 360) {
+	
+			drip71.y = 170;
+		}
+		if (drip72.y > 150) {
+	
+			drip72.y = 0;
+		}
+		if (drip73.y > 360) {
+	
+			drip73.y = 170;
+		}
+		if (drip74.y > 150) {
+	
+			drip74.y = 0;
+		}
+		if (drip75.y > 150) {
+	
+			drip75.y = 0;
+		}
+	  
+		var vx12 = rect1.centerX() - drip71.centerX();
+		var vy12 = rect1.centerY() - drip71.centerY();
+		var combinedHalfWidths12 = rect1.halfWidth() + drip71.halfWidth();
+		var combinedHalfHeights12 = rect1.halfHeight() + drip71.halfHeight();
+		
+		if (Math.abs(vx12) < combinedHalfWidths12) {
+	  
+			if (Math.abs(vy12) < combinedHalfHeights12) { 
+		  
+				rect1.explode = true; 
+				rect2.explode = true;
+				rect3.explode = true;
+			}
+		}
+
+		var vx13 = rect1.centerX() - drip72.centerX();
+		var vy13 = rect1.centerY() - drip72.centerY();
+		var combinedHalfWidths13 = rect1.halfWidth() + drip72.halfWidth();
+		var combinedHalfHeights13 = rect1.halfHeight() + drip72.halfHeight();
+		
+		if (Math.abs(vx13) < combinedHalfWidths13) {
+	  
+			if (Math.abs(vy13) < combinedHalfHeights13) { 
+		  
+				rect1.explode = true; 
+				rect2.explode = true;
+				rect3.explode = true;
+			}
+		}
+
+		var vx12 = rect1.centerX() - drip73.centerX();
+		var vy12 = rect1.centerY() - drip73.centerY();
+		var combinedHalfWidths12 = rect1.halfWidth() + drip73.halfWidth();
+		var combinedHalfHeights12 = rect1.halfHeight() + drip73.halfHeight();
+		
+		if (Math.abs(vx12) < combinedHalfWidths12) {
+	  
+			if (Math.abs(vy12) < combinedHalfHeights12) { 
+		  
+				rect1.explode = true; 
+				rect2.explode = true;
+				rect3.explode = true;
+			}
+		}
+	  
+		var vx13 = rect1.centerX() - drip74.centerX();
+		var vy13 = rect1.centerY() - drip74.centerY();
+		var combinedHalfWidths13 = rect1.halfWidth() + drip74.halfWidth();
+		var combinedHalfHeights13 = rect1.halfHeight() + drip74.halfHeight();
+		
+		if (Math.abs(vx13) < combinedHalfWidths13) {
+	  
+			if (Math.abs(vy13) < combinedHalfHeights13) { 
+		  
+				rect1.explode = true; 
+				rect2.explode = true;
+				rect3.explode = true;
+			}
+		}
+	
+		var vx13 = rect1.centerX() - drip75.centerX();
+		var vy13 = rect1.centerY() - drip75.centerY();
+		var combinedHalfWidths13 = rect1.halfWidth() + drip75.halfWidth();
+		var combinedHalfHeights13 = rect1.halfHeight() + drip75.halfHeight();
+		
+		if (Math.abs(vx13) < combinedHalfWidths13) {
+	  
+			if (Math.abs(vy13) < combinedHalfHeights13) { 
+		 
+				rect1.explode = true; 
+				rect2.explode = true;
+				rect3.explode = true;
+			}
+		}
+
+
+		if (level === 7 && !levelWon) {
+	
+			context.fillStyle = "#fff";
+			context.font = "bold 12px ferdana";
+			context.fillText("ACID LEAKS MORE SEVERE.",210,15);
+		}
+	}
+
+	if (level === 8 || level === 10) {
+	
+		if (!droidAlive) {
+
+			context.drawImage(rect7Image,rect7.sourceX,rect7.sourceY,rect7.sourceWidth,rect7.sourceHeight,rect7.x,rect7.y,rect7.width,rect7.height);
+		} else {
+
+			context.drawImage(rect7Image,rect7.sourceX,rect7.sourceY,rect7.sourceWidth,rect7.sourceHeight,rect7.x,rect7.y,rect7.width,rect7.height);
+		}
+
+		if (!droidAlive) {
+
+			context.drawImage(rect8Image,rect8.sourceX,rect8.sourceY,rect8.sourceWidth,rect8.sourceHeight,rect8.x,rect8.y,rect8.width,rect8.height);
+		} else {
+
+			context.drawImage(rect8Image,rect8.sourceX,rect8.sourceY,rect8.sourceWidth,rect8.sourceHeight,rect8.x,rect8.y,rect8.width,rect8.height);
+		}
+
+		if (!droidAlive) {
+		
+			context.drawImage(rect9Image,rect9.sourceX,rect9.sourceY,rect9.sourceWidth,rect9.sourceHeight,rect9.x,rect9.y,rect9.width,rect9.height);
+		} else {
+
+			context.drawImage(rect9Image,rect9.sourceX,rect9.sourceY,rect9.sourceWidth,rect9.sourceHeight,rect9.x,rect9.y,rect9.width,rect9.height);
+		}
+
+		if (droidAlive) {
+		
+			rect7.x += rect7.vx;   
+			rect8.x += rect8.vx;
+			rect9.x += rect9.vx;
+
+			//HUMAN AND DROID COLLISION
+
+			var vx12 = rect1.centerX() - rect7.centerX();
+			var vy12 = rect1.centerY() - rect7.centerY();
+			var combinedHalfWidths12 = rect1.halfWidth() + rect7.halfWidth();
+			var combinedHalfHeights12 = rect1.halfHeight() + rect7.halfHeight();
+		
+			if (Math.abs(vx12) < combinedHalfWidths12) {
+	  
+				if (Math.abs(vy12) < combinedHalfHeights12) { 
+		  
+					rect1.explode = true;
+					rect2.explode = true;
+					rect3.explode = true;
+				}
+			}
+		}
+		else  {
+	
+			rect7.x += -rect7.vx;
+			rect8.x += -rect8.vx;
+			rect9.x += -rect9.vx;
+		}
+
+		if (rect7.x < 40) {
+	
+			rect7.x = 40;
+			rect8.x = 40;
+			rect9.x = 40;
+		}
 	}
 
 	if(level === 8)
