@@ -753,6 +753,7 @@
 					zombies[2].y = 110;
 					gotZombie = false;
 				}
+				
 				level++;
 				levelWon = false;
 				piece1.disappear = false;
@@ -846,412 +847,263 @@
 		context2.clearRect(0,0,canvas2.width,canvas2.height); //CLEARING CANVAS 2
 		window.setTimeout(main,21); //TIMEOUT MAIN LOOP
 
-	if(level === 0)   //IF THE TITLE SCREEN IS VISIBLE
-	{
+	if (level === 0)  {
 
-	context.drawImage(backgroundTitleImage,backgroundTitle.x,backgroundTitle.y,backgroundTitle.width,backgroundTitle.height);
-	context2.drawImage(backgroundTitleImage,backgroundTitle.x,backgroundTitle.y,backgroundTitle.width,backgroundTitle.height);
+		context.drawImage(backgroundTitleImage,backgroundTitle.x,backgroundTitle.y,backgroundTitle.width,backgroundTitle.height);
+		context2.drawImage(backgroundTitleImage,backgroundTitle.x,backgroundTitle.y,backgroundTitle.width,backgroundTitle.height);
 
-	//DRAWING THE SCI-FI DOOR ON THE LEFT CANVAS
+		//DRAWING THE SCI-FI DOOR ON THE LEFT CANVAS
 
-	context.lineWidth = 5;   
-	context.strokeStyle = "#000000";
-	context.beginPath();
-	context.moveTo(canvas.width / 2, 0);
-	context.lineTo(275,40);
-	context.lineTo(275,80);
-	context.lineTo(225,120);
-	context.lineTo(225,160);
-	context.lineTo(275,200);
-	context.lineTo(275,240);
-	context.lineTo(225,280);
-	context.lineTo(225,320);
-	context.lineTo(275,360);
-	context.lineTo(275,400);
-	context.stroke();
-	context.closePath();
+		context.lineWidth = 5;   
+		context.strokeStyle = "#000000";
+		context.beginPath();
+		context.moveTo(canvas.width / 2, 0);
+		context.lineTo(275,40);
+		context.lineTo(275,80);
+		context.lineTo(225,120);
+		context.lineTo(225,160);
+		context.lineTo(275,200);
+		context.lineTo(275,240);
+		context.lineTo(225,280);
+		context.lineTo(225,320);
+		context.lineTo(275,360);
+		context.lineTo(275,400);
+		context.stroke();
+		context.closePath();
 
-	//DRAWING THE SCI-FI DOOR ON THE RIGHT CANVAS
+		//DRAWING THE SCI-FI DOOR ON THE RIGHT CANVAS
 
-	context2.lineWidth = 5;
-	context2.strokeStyle = "#000000";
-	context2.beginPath();
-	context2.moveTo(canvas.width / 2, 0);
-	context2.lineTo(275,40);
-	context2.lineTo(275,80);
-	context2.lineTo(225,120);
-	context2.lineTo(225,160);
-	context2.lineTo(275,200);
-	context2.lineTo(275,240);
-	context2.lineTo(225,280);
-	context2.lineTo(225,320);
-	context2.lineTo(275,360);
-	context2.lineTo(275,400);
-	context2.stroke();
-	context.closePath();
+		context2.lineWidth = 5;
+		context2.strokeStyle = "#000000";
+		context2.beginPath();
+		context2.moveTo(canvas.width / 2, 0);
+		context2.lineTo(275,40);
+		context2.lineTo(275,80);
+		context2.lineTo(225,120);
+		context2.lineTo(225,160);
+		context2.lineTo(275,200);
+		context2.lineTo(275,240);
+		context2.lineTo(225,280);
+		context2.lineTo(225,320);
+		context2.lineTo(275,360);
+		context2.lineTo(275,400);
+		context2.stroke();
+		context.closePath();
 
-	//DRAWING THE BLACK AND YELLOW LINES ON THE LEFT CANVAS
+		//DRAWING THE BLACK AND YELLOW LINES ON THE LEFT CANVAS
 
-	for(var i = 0; i < 600; i += 80)
-	{
+		for (var i = 0; i < 600; i += 80) {
 
-	context.beginPath();
-	context.fillStyle = "#ff0";
-	context.moveTo(-40 + i,20);
-	context.lineTo(0 + i,0);
-	context.lineTo(40 + i,0);
-	context.lineTo(0 + i,20);
-	context.lineTo(-40 + i,20);
-	context.fill();
-	context.closePath();
+			context.beginPath();
+			context.fillStyle = "#ff0";
+			context.moveTo(-40 + i,20);
+			context.lineTo(0 + i,0);
+			context.lineTo(40 + i,0);
+			context.lineTo(0 + i,20);
+			context.lineTo(-40 + i,20);
+			context.fill();
+			context.closePath();
 
-	context.fillStyle = "#000";
-	context.beginPath();
-	context.moveTo(0 + i,20);
-	context.lineTo(40 + i,0);
-	context.lineTo(80 + i,0);
-	context.lineTo(40 + i,20);
-	context.lineTo(0 + i,20);
-	context.fill();
-	context.closePath();
+			context.fillStyle = "#000";
+			context.beginPath();
+			context.moveTo(0 + i,20);
+			context.lineTo(40 + i,0);
+			context.lineTo(80 + i,0);
+			context.lineTo(40 + i,20);
+			context.lineTo(0 + i,20);
+			context.fill();
+			context.closePath();
+		}
+
+		//DRAWING THE BLACK AND YELLOW LINES ON THE RIGHT CANVAS
+
+		for (var i = 0; i < 460; i += 80) {
+			
+			context2.fillStyle = "#ff0";
+			context2.beginPath();
+			context2.moveTo(-40 + i,20);
+			context2.lineTo(0 + i,0);
+			context2.lineTo(40 + i,0);
+			context2.lineTo(0 + i,20);
+			context2.lineTo(-40 + i,20);
+			context2.fill();
+			context.closePath();
+
+			context2.fillStyle = "#000";
+			context2.beginPath();
+			context2.moveTo(0 + i,20);
+			context2.lineTo(40 + i,0);
+			context2.lineTo(80 + i,0);
+			context2.lineTo(40 + i,20);
+			context2.lineTo(0 + i,20);
+			context2.fill();
+			context.closePath();
+		}
+
+		//TITLE SCREEN TEXT
+
+		context.fillStyle = "#ffffff";
+		context.font = " 44px Orator Std";
+		context.fillText("ALIEN DISPOSAL CREW",6,140);
+		context.font = " 26px Orator Std";
+
+		context.fillText("Press SPACE to begin",116,360);
+		context.fillStyle = "rgba(51,51,51,.9)";
+		context.fillRect(0,180,canvas.width,100);
+		context.fillStyle = "#000000";
+		context.font = "bold 26px verdana";
+		context.fillText("A game by Ben W. Savage",86,220);
+		context.fillText("Art By Brian Callahan",112,260);
+		context.closePath();
+
+		context2.fillStyle = "#ffffff";
+		context2.font = "bold 18px verdana";
+		context2.fillText("MADE FOR THE",16,330);
+		context2.font = "bold 18px verdana";
+		context2.fillText("JS13K COMPETITION",16,360);
+		context2.fillStyle = "rgba(51,51,51,.9)";
+		context2.fillRect(0,180,canvas.width,100);
+		context.closePath();
 	}
 
-	//DRAWING THE BLACK AND YELLOW LINES ON THE RIGHT CANVAS
+	if (level > 0) {
+	
+		context.drawImage(backgroundGameImage,backgroundGame.x,backgroundGame.y,backgroundGame.width,backgroundGame.height);
+		context2.drawImage(backgroundGameRightImage,backgroundGameRight.x,backgroundGameRight.y,backgroundGameRight.width,backgroundGameRight.height);
 
-	for(var i = 0; i < 460; i += 80)
-	{
-	context2.fillStyle = "#ff0";
-	context2.beginPath();
-	context2.moveTo(-40 + i,20);
-	context2.lineTo(0 + i,0);
-	context2.lineTo(40 + i,0);
-	context2.lineTo(0 + i,20);
-	context2.lineTo(-40 + i,20);
-	context2.fill();
-	context.closePath();
+		context.lineWidth = "1";
+		context.strokeStyle = "000";
+		context.fillStyle = "#000";
+		context.font = "bold 20px verdana";
+		context.fillText("LVL: " + level,10,390)   //LEVEL INDICATOR ON BOTTOM-LEFT
+		context.fillStyle = "#222";
+		context.font = "bold 14px Zado";
+		context.fillText("SeCT0R 5c 3-11-2075 recON ///TemTech Surveillance ",100,390) 
 
-	context2.fillStyle = "#000";
-	context2.beginPath();
-	context2.moveTo(0 + i,20);
-	context2.lineTo(40 + i,0);
-	context2.lineTo(80 + i,0);
-	context2.lineTo(40 + i,20);
-	context2.lineTo(0 + i,20);
-	context2.fill();
-	context.closePath();
-	}
+		context.fillStyle = "#333";      //DRAWING THE PIPE IN THE LEFT CANVAS
+		context.fillRect(0,0,550,20);
+		context.closePath();
+		context2.fillStyle = "#ccc";			//WRITING THE TEXT ON THE RIGHT CANVAS
+		context2.font = "bold 52px verdana";
+		context2.fillText("95-AC4",47,135)
 
-	//TITLE SCREEN TEXT
+		//HUMAN MOVE
 
-	context.fillStyle = "#ffffff";
-	context.font = " 44px Orator Std";
-	context.fillText("ALIEN DISPOSAL CREW",6,140);
-	context.font = " 26px Orator Std";
+		rect1.x += rect1.vx;
+		rect2.x += rect1.vx;
+		rect3.x += rect1.vx;
 
-	context.fillText("Press SPACE to begin",116,360);
-	context.fillStyle = "rgba(51,51,51,.9)";
-	context.fillRect(0,180,canvas.width,100);
-	context.fillStyle = "#000000";
-	context.font = "bold 26px verdana";
-	context.fillText("A game by Ben W. Savage",86,220);
-	context.fillText("Art By Brian Callahan",112,260);
-	context.closePath();
+		//ZOMBIE MOVE
 
-	context2.fillStyle = "#ffffff";
-	context2.font = "bold 18px verdana";
-	context2.fillText("MADE FOR THE",16,330);
-	context2.font = "bold 18px verdana";
-	context2.fillText("JS13K COMPETITION",16,360);
-	context2.fillStyle = "rgba(51,51,51,.9)";
-	context2.fillRect(0,180,canvas.width,100);
-	context.closePath();
+		zombies[0].x += zombies[0].vx;
+		zombies[1].x += zombies[0].vx;
+		zombies[2].x += zombies[0].vx;
 
-	}
+		//MAKING AOMBIE'S HEAD STICK OUT
 
+		zombies[0].x = zombies[1].x + 5;  
 
-	if(level > 0)  //IF THE SCREEN IS ANYTHING BUT THE TITLE SCREEN
-	{
-	context.drawImage(backgroundGameImage,backgroundGame.x,backgroundGame.y,backgroundGame.width,backgroundGame.height);
-	context2.drawImage(backgroundGameRightImage,backgroundGameRight.x,backgroundGameRight.y,backgroundGameRight.width,backgroundGameRight.height);
-	//context2.drawImage(glassOverlayImage,glassOverlay.x,glassOverlay.y,glassOverlay.width,glassOverlay.height);
-	//context.drawImage(backgroundTopImage,backgroundTop.x,backgroundTop.y,backgroundTop.width,backgroundTop.height);
-	//context.drawImage(backgroundBottomImage,backgroundBottom.x,backgroundBottom.y,backgroundBottom.width,backgroundBottom.height);
-	//context2.drawImage(backgroundSide2Image,backgroundSide2.x,backgroundSide2.y,backgroundSide2.width,backgroundSide2.height);
+		//TREADMILL MOVE
 
-	//theme.play();
-	context.lineWidth = "1";
-	context.strokeStyle = "000";
-	context.fillStyle = "#000";
-	context.font = "bold 20px verdana";
-	context.fillText("LVL: " + level,10,390)   //LEVEL INDICATOR ON BOTTOM-LEFT
-	context.fillStyle = "#222";
-	context.font = "bold 14px Zado";
-	context.fillText("SeCT0R 5c 3-11-2075 recON ///TemTech Surveillance ",100,390) 
+		tread1.sourceX += 550;
+		tread2.sourceX += 550;
 
-	context.fillStyle = "#333";      //DRAWING THE PIPE IN THE LEFT CANVAS
-	context.fillRect(0,0,550,20);
-	context.closePath();
+		if (tread1.sourceX > 1100) {
+			
+			tread1.sourceX = 0;
+		}
+		if (tread2.sourceX > 1100) {
+			
+			tread2.sourceX = 0;
+		}
 
-	/*
-	context2.fillStyle = "#000";		// DRAWING THE GRADIENT LINES ON THE RIGHT CANVAS
-	context2.fillRect(0,380,300,20);
-	context2.fillStyle = "#111";
-	context2.fillRect(0,360,300,20);
-	context2.fillStyle = "#222";
-	context2.fillRect(0,340,300,20);
-	context2.fillStyle = "#333";
-	context2.fillRect(0,320,300,20);
-	context2.fillStyle = "#444";
-	context2.fillRect(0,300,300,20);
-	context2.fillStyle = "#555";
-	context2.fillRect(0,280,300,20);
-	context2.fillStyle = "#666";
-	context2.fillRect(0,260,300,20);
-	context2.fillStyle = "#777";
-	context2.fillRect(0,240,300,20);
-	context2.fillStyle = "#888";
-	context2.fillRect(0,220,300,20);
-	context2.fillStyle = "#aaa";
-	context2.fillRect(0,200,300,20);
-	context2.fillStyle = "#bbb";
-	context2.fillRect(0,180,300,20);
-	*/
-	context2.fillStyle = "#ccc";			//WRITING THE TEXT ON THE RIGHT CANVAS
-	context2.font = "bold 52px verdana";
-	context2.fillText("95-AC4",47,135)
+		if (crusher1On === true) {
+			
+			if (crusher1.height < 180) {
+				
+				crusher1.height += 8;
+			}
+		}
 
-	/*
-	for(var i = 0; i < 460; i += 80)	//YELLOW AND BLACK LINES ON THE RIGHT CANVAS
-	{
+		if (crusher1On === false) {
+	
+			crusher1.height = 20;
+			context.drawImage(switcher1Image,switcher1.x,switcher1.y,switcher1.width,switcher1.height);
+			droidAlive = false;  //ACTIVATE DROID
+		}
 
-	context2.fillStyle = "#ff0";
-	context2.beginPath();
-	context2.moveTo(-40 + i,200);
-	context2.lineTo(0 + i,180);
-	context2.lineTo(40 + i,180);
-	context2.lineTo(0 + i,200);
-	context2.lineTo(-40 + i,200);
-	context2.fill();
-	context.closePath();
+		if (crusher1On === true || bullet.height > 20) {
+		
+			droidAlive = true; // DISACTIVATE DROID
+			context.drawImage(switcher2Image,switcher2.x,switcher2.y,switcher2.width,switcher2.height);
+		}
 
-	context2.fillStyle = "#000";
-	context2.beginPath();
-	context2.moveTo(0 + i,200);
-	context2.lineTo(40 + i,180);
-	context2.lineTo(80 + i,180);
-	context2.lineTo(40 + i,200);
-	context2.lineTo(0 + i,200);
-	context2.fill();
-	context.closePath();
-	}
-	*/
+		crusher1On = false; //CRUSHER IS OFF
 
-	//HUMAN MOVE
+		if (shootZombie) {
 
-	rect1.x += rect1.vx;
-	rect2.x += rect1.vx;
-	rect3.x += rect1.vx;
+			piece1.vx = 1.3;   //ZOMBIE PIECES FALLING VELOCITIES
+			piece1.vy = 5;
+			piece2.vx = 2;
+			piece2.vy = 5;
+			piece3.vx = 3;
+			piece3.vy = 5;
 
-	//ZOMBIE MOVE
+			if (piece1.y < 380) {
+				
+				piece1.x += piece1.vx;  //MAKE PIECES FALL
+				piece1.y += piece1.vy;
 
-	zombies[0].x += zombies[0].vx;
-	zombies[1].x += zombies[0].vx;
-	zombies[2].x += zombies[0].vx;
+				piece2.x += piece2.vx;
+				piece2.y += piece2.vy;
 
+				piece3.x += piece3.vx;
+				piece3.y += piece3.vy;
+			}
+		}
 
-
-	//MAKING AOMBIE'S HEAD STICK OUT
-
-	zombies[0].x = zombies[1].x + 5;  
-
-	//TREADMILL MOVE
-
-	tread1.sourceX += 550;
-	tread2.sourceX += 550;
-
-	if(tread1.sourceX > 1100)
-	{
-	tread1.sourceX = 0;
-	}
-	if(tread2.sourceX > 1100)
-	{
-	tread2.sourceX = 0;
-	}
-
-
-	//ACTIVATE CRUSHER
-
-	if(crusher1On === true)
-	{
-	if(crusher1.height < 180)  //IF LASER HAS NOT REACHED BOTTOM, CONTINUE GROWING
-	{
-	crusher1.height += 8;
-	}
-	}
-
-	if(crusher1On === false)  //IF LASER IS OFF, RECTRACT
-	{
-	crusher1.height = 20;
-	context.drawImage(switcher1Image,switcher1.x,switcher1.y,switcher1.width,switcher1.height);
-	droidAlive = false;  //ACTIVATE DROID
-	}
-
-	if(crusher1On === true || bullet.height > 20)  //IF LASER IS ON AND IS 
-	{
-	droidAlive = true; // DISACTIVATE DROID
-	//context.fillStyle = "#4EA12F";
-	context.drawImage(switcher2Image,switcher2.x,switcher2.y,switcher2.width,switcher2.height);
-	}
-
-	//context.fillRect(topSwitcherRandom1,130,switcher1.width,switcher1.height); //DRAW SWITCH
-	//context.drawImage(switcher2Image,switcher2.x,switcher2.y,switcher2.width,switcher2.height);
-	crusher1On = false; //CRUSHER IS OFF
-
-	//context.drawImage(spaceBackground1Image,spaceBackground1.x,spaceBackground1.y,spaceBackground1.width,spaceBackground1.height);
-	//context.drawImage(spaceBackground2Image,spaceBackground2.x,spaceBackground2.y,spaceBackground2.width,spaceBackground2.height);
-	//context.drawImage(spaceBackground3Image,spaceBackground3.x,spaceBackground3.y,spaceBackground3.width,spaceBackground3.height);
-
-	/*
-	context.fillStyle = "#000000";        //DRAWING WINDOW 1 IN THE LEFT CANVAS
-	context.fillRect(70,180,100,100);
-	context.fillStyle = "#ffffff";
-	context.fillRect(100,200,4,4);		//STARS
-	context.fillRect(160,230,4,4);
-	context.fillRect(127,260,4,4);
-	context.fillRect(87,245,4,4);
-	context.fillRect(140,203,4,4);
-	*/
-	//context.lineWidth = 6;
-	//context.strokeStyle = "#aaa";
-	//context.strokeRect(70,180,100,100);
-	//context.closePath();
-
-	/*
-	context.fillStyle = "#000000";		//DRAWING WINDOW 2 IN THE LEFT CANVAS
-	context.fillRect(370,180,100,100);
-	context.fillStyle = "#ffffff";
-	context.fillRect(400,225,4,4); 		//STARS
-	context.fillRect(460,230,4,4);
-	context.fillRect(427,260,4,4);
-	context.fillRect(387,245,4,4);
-	context.fillRect(423,203,4,4);
-	*/
-	//context.lineWidth = 6;
-	//context.strokeStyle = "#aaa";
-	//context.strokeRect(370,180,100,100);
-	//context.closePath();
-
-	/*
-	context.fillStyle = "#000000";		//DRAWING WINDOW 3 IN THE LEFT CANVAS
-	context.fillRect(250,30,120,40);
-	context.fillStyle = "#ffffff";
-	context.fillRect(270,50,4,4);		//STARS
-	context.fillRect(298,43,4,4);
-	context.fillRect(350,57,4,4);
-	*/
-	//context.lineWidth = 6;
-	//context.strokeStyle = "#aaa";
-	//context.strokeRect(250,30,120,40);
-	//context.closePath();
-
-
-
-	//THROW ZOMBIES OUT OF CHUTE
-
-	if (shootZombie === true)
-	{
-
-	piece1.vx = 1.3;   //ZOMBIE PIECES FALLING VELOCITIES
-	piece1.vy = 5;
-	piece2.vx = 2;
-	piece2.vy = 5;
-	piece3.vx = 3;
-	piece3.vy = 5;
-
-	if(piece1.y < 380)   //IF PIECES HAVEN'T HIT BOTTOM YET
-	{
-	piece1.x += piece1.vx;  //MAKE PIECES FALL
-	piece1.y += piece1.vy;
-
-	piece2.x += piece2.vx;
-	piece2.y += piece2.vy;
-
-	piece3.x += piece3.vx;
-	piece3.y += piece3.vy;
-	}
-	}
-
-
-	//ZOMBIE MOVEMENT
-
-	if(zombies[2].explode === false)
-	{
-	  if (zombies[0].x > (canvas.width - zombies[0].width) && zombies[0].y === 30) //MOVING FROM TOP-RIGHT TO LOWER-LEFT OF SCREEN
-	  {
-	  zombies[0].x = 0;
-	  zombies[0].y = 230;
-	  zombies[1].x = 0;
-	  zombies[1].y = 270;
-	  zombies[2].x = 0;
-	  zombies[2].y = 310;
-	  }
-	  
-	  if (zombies[0].x > (canvas.width - zombies[0].width) && zombies[0].y === 230) //MOVING FROM BOTTOM-RIGHT TO TOP-LEFT OF SCREEN
-	  {
-	  zombies[0].x = 0;
-	  zombies[0].y = 30;
-	  zombies[1].x = 0;
-	  zombies[1].y = 70;
-	  zombies[2].x = 0;
-	  zombies[2].y = 110;
-	  }
-	  if (zombies[0].x < 0 &&  zombies[0].y === 30) //MOVING FROM TOP-LEFT TO BOTTOM-RIGHT OF SCREEN
-	  {
-	  zombies[0].x = 530;
-	  zombies[0].y = 230;
-	  zombies[1].x = 530;
-	  zombies[1].y = 270;
-	  zombies[2].x = 530;
-	  zombies[2].y = 310;
-	  }
-	  if (zombies[0].x < 0 &&  zombies[0].y === 230) //MOVING FROM BOTTOM-LEFT TO TOP-RIGHT OF SCREEN
-	  {
-	  zombies[0].x = 530;
-	  zombies[0].y = 30;
-	  zombies[1].x = 530;
-	  zombies[1].y = 70;
-	  zombies[2].x = 530;
-	  zombies[2].y = 310;
-	  }
-	 }
-	 
-	//WRITING "TRASH" ABOVE TRASH CAN 
-	//context.fillStyle = "#000000";
-	//context.font = "bold 10px ferdana";
-	//context.fillText("TRASH",407,85)
+		if (!zombies[2].explode) {
+		  
+			if (zombies[0].x > (canvas.width - zombies[0].width) && zombies[0].y === 30) {
+				
+				zombies[0].x = 0;
+				zombies[0].y = 230;
+				zombies[1].x = 0;
+				zombies[1].y = 270;
+				zombies[2].x = 0;
+				zombies[2].y = 310;
+			}
+			if (zombies[0].x > (canvas.width - zombies[0].width) && zombies[0].y === 230) {
+			  
+				zombies[0].x = 0;
+				zombies[0].y = 30;
+				zombies[1].x = 0;
+				zombies[1].y = 70;
+				zombies[2].x = 0;
+				zombies[2].y = 110;
+			}
+			if (zombies[0].x < 0 &&  zombies[0].y === 30) {
+			  
+				zombies[0].x = 530;
+				zombies[0].y = 230;
+				zombies[1].x = 530;
+				zombies[1].y = 270;
+				zombies[2].x = 530;
+				zombies[2].y = 310;
+			}
+			if (zombies[0].x < 0 &&  zombies[0].y === 230) {
+			  
+				zombies[0].x = 530;
+				zombies[0].y = 30;
+				zombies[1].x = 530;
+				zombies[1].y = 70;
+				zombies[2].x = 530;
+				zombies[2].y = 310;
+			}
+		}
 
 	//DRAWING TRASH CAN
 	context.fillStyle = "#CF311F";
-	//context.fillRect(trashCan.x,trashCan.y,trashCan.width,trashCan.height);
-
-	//context.drawImage(trashCanImage,trashCan.x,trashCan.y,trashCan.width,trashCan.height);
-
-	//DRAWING TRASH CAN HOLE
-	//context.fillStyle = "#000000";
-	//context.fillRect(trashHole.x,trashHole.y,trashHole.width,trashHole.height);
-
-	//DRAWING CHUTE PIECES
-	//context.fillStyle = "#cccccc";
-	//context.fillRect(450,100,60,20);
-
-	//context.fillStyle = "#cccccc";
-	//context.fillRect(490,40,20,60);
-
-	//context.fillStyle = "#cccccc";
-	//context.fillRect(490,40,60,20);
-
-
-	//ZOMBIE PIECES
 
 	if(piece1.disappear === false)  //IF ZOMBIE PIECES HAVE NOT BEEN PULVERIZED, DRAW THEM
 	{
